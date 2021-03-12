@@ -17,5 +17,9 @@ Plug 'kamykn/spelunker.vim'
 
 Plug 'nvim-lua/completion-nvim'
 
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " update parsers on update
+
+Plug 'editorconfig/editorconfig-vim'
+
 call plug#end()
 
