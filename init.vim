@@ -10,5 +10,12 @@ Plug 'morhetz/gruvbox'
 
 Plug 'tpope/vim-fugitive'
 
+Plug 'voldikss/vim-floaterm'
+
+Plug 'kamykn/popup-menu.nvim'
+Plug 'kamykn/spelunker.vim'
+
+Plug 'nvim-lua/completion-nvim'
+
 call plug#end()
 
