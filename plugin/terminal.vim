@@ -1,3 +1,5 @@
+tnoremap <Esc> <C-\><C-n>
+
 let g:floaterm_keymap_new    = '<F5>'
 let g:floaterm_keymap_prev   = '<F2>'
 let g:floaterm_keymap_next   = '<F3>'
