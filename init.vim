@@ -19,5 +19,7 @@ Plug 'nvim-lua/completion-nvim'
 
 Plug 'editorconfig/editorconfig-vim'
 
+Plug 'vimwiki/vimwiki'
+
 call plug#end()
 
