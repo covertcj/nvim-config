@@ -1,6 +1,7 @@
 local lsp_config = require'lspconfig'
 
 lsp_config.tsserver.setup{}
+lsp_config.rust_analyzer.setup{}
 
 local eslint = {
   lintCommand = "./node_modules/.bin/eslint -f unix --stdin",

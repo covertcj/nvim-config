@@ -6,6 +6,7 @@ nnoremap <silent> K         <CMD>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <leader>. <CMD>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> ]g        <CMD>lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <silent> [g        <CMD>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> lr        <CMD>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR><CMD>:edit<CR>
 
 nnoremap <leader>fr   <CMD>lua require('telescope.builtin').lsp_references{}<CR>
 nnoremap <leader>fs   <CMD>lua require('telescope.builtin').lsp_document_symbols{}<CR>

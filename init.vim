@@ -19,5 +19,7 @@ Plug 'nvim-lua/completion-nvim'
 
 Plug 'editorconfig/editorconfig-vim'
 
+Plug 'neoclide/jsonc.vim'
+
 call plug#end()
 
