@@ -21,5 +21,7 @@ Plug 'editorconfig/editorconfig-vim'
 
 Plug 'neoclide/jsonc.vim'
 
+Plug 'vimwiki/vimwiki'
+
 call plug#end()
 
