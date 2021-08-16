@@ -1,6 +1,6 @@
-function is_windows()
-  return vim.fn.has('win32') == 1
-end
+-- function is_windows()
+--   return vim.fn.has('win32') == 1
+-- end
 
 return require('packer').startup(function ()
   use 'wbthomason/packer.nvim'
@@ -76,35 +76,16 @@ return require('packer').startup(function ()
 
   
   --[[ Notes ]]--
-  -- neuron doesn't run in windows and neuron.nvim doesn't
-  -- have a workaround for WSL/docker at the moment
-  if is_windows() then
-    use {
-      'vimwiki/vimwiki',
-      setup = function ()
-        vim.g.vimwiki_folding = 'expr'
-        vim.g.vimwiki_list = {{
-          path = '~/notes/',
-          syntax = 'markdown',
-          ext = '.md',
-        }}
-      end,
-    }
-  else
-    use {
-      'oberblastmeister/neuron.nvim',
-      requires = {
-        {'nvim-lua/popup.nvim'},
-        {'nvim-lua/plenary.nvim'},
-      },
-      config = function ()
-        require'neuron'.setup{
-          neuron_cmd = 'neuron.bat',
-          neuron_dir = '~/notes',
-          leader = 'n', -- leader prefix key
-        }
-      end,
-    }
-  end
+  use {
+    'vimwiki/vimwiki',
+    setup = function ()
+      vim.g.vimwiki_folding = 'expr'
+      vim.g.vimwiki_list = {{
+        path = '~/notes/',
+        syntax = 'markdown',
+        ext = '.md',
+      }}
+    end,
+  }
 end)
 
