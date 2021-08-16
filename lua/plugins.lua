@@ -1,13 +1,24 @@
 return require('packer').startup(function ()
   use 'wbthomason/packer.nvim'
 
+  --[[ Theming ]]--
   use {
     'bluz71/vim-moonfly-colors',
     config = [[vim.cmd "colorscheme moonfly"]]
   }
 
-  use 'b3nj5m1n/kommentary'
 
+  --[[ General Editing ]]--
+  use 'b3nj5m1n/kommentary'
+  use 'tpope/vim-surround'
+
+
+  --[[ git ]]--
+  use 'tpope/vim-fugitive'
+  use {'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim'}
+
+
+  --[[ completion / LSP ]]--
   use 'ms-jpq/coq.artifacts'
   use 'ms-jpq/coq_nvim'
 
@@ -22,6 +33,7 @@ return require('packer').startup(function ()
     end
   }
 
+  --[[ Fuzzy / Search ]]--
   use {
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} }
