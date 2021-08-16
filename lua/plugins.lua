@@ -1,3 +1,7 @@
+function is_windows()
+  return vim.fn.has('win32') == 1
+end
+
 return require('packer').startup(function ()
   use 'wbthomason/packer.nvim'
 
@@ -74,7 +78,7 @@ return require('packer').startup(function ()
   --[[ Notes ]]--
   -- neuron doesn't run in windows and neuron.nvim doesn't
   -- have a workaround for WSL/docker at the moment
-  if vim.fn.has('win32') then
+  if is_windows() then
     use {
       'vimwiki/vimwiki',
       setup = function ()
