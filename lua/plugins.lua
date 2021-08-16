@@ -67,12 +67,13 @@ return require('packer').startup(function ()
   use {
     'vimwiki/vimwiki',
     setup = function ()
+      vim.g.vimwiki_folding = 'expr'
       vim.g.vimwiki_list = {{
         path = '~/notes/',
         syntax = 'markdown',
         ext = '.md',
       }}
-    end
+    end,
   }
 end)
 
