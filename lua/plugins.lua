@@ -13,6 +13,14 @@ return require('packer').startup(function ()
     config = function () require'plugins.lualine'.config() end,
   }
 
+  -- TODO add which-key support for all my mappings
+  use {
+    'folke/which-key.nvim',
+    config = function()
+      require("which-key").setup { }
+    end,
+  }
+
 
   --[[ General Editing ]]--
   use 'b3nj5m1n/kommentary'
