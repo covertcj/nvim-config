@@ -72,16 +72,35 @@ return require('packer').startup(function ()
 
   
   --[[ Notes ]]--
-  use {
-    'vimwiki/vimwiki',
-    setup = function ()
-      vim.g.vimwiki_folding = 'expr'
-      vim.g.vimwiki_list = {{
-        path = '~/notes/',
-        syntax = 'markdown',
-        ext = '.md',
-      }}
-    end,
-  }
+  -- neuron doesn't run in windows and neuron.nvim doesn't
+  -- have a workaround for WSL/docker at the moment
+  if vim.fn.has('win32') then
+    use {
+      'vimwiki/vimwiki',
+      setup = function ()
+        vim.g.vimwiki_folding = 'expr'
+        vim.g.vimwiki_list = {{
+          path = '~/notes/',
+          syntax = 'markdown',
+          ext = '.md',
+        }}
+      end,
+    }
+  else
+    use {
+      'oberblastmeister/neuron.nvim',
+      requires = {
+        {'nvim-lua/popup.nvim'},
+        {'nvim-lua/plenary.nvim'},
+      },
+      config = function ()
+        require'neuron'.setup{
+          neuron_cmd = 'neuron.bat',
+          neuron_dir = '~/notes',
+          leader = 'n', -- leader prefix key
+        }
+      end,
+    }
+  end
 end)
 
