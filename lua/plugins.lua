@@ -56,11 +56,23 @@ return require('packer').startup(function ()
   -- }
 
 
-
   --[[ Fuzzy / Search ]]--
   use {
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} },
+  }
+
+  
+  --[[ Notes ]]--
+  use {
+    'vimwiki/vimwiki',
+    setup = function ()
+      vim.g.vimwiki_list = {{
+        path = '~/notes/',
+        syntax = 'markdown',
+        ext = '.md',
+      }}
+    end
   }
 end)
 
