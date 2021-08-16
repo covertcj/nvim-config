@@ -1,10 +1,16 @@
 return require('packer').startup(function ()
   use 'wbthomason/packer.nvim'
 
-  --[[ Theming ]]--
+  --[[ Theming / UI ]]--
   use {
     'bluz71/vim-moonfly-colors',
-    config = [[vim.cmd "colorscheme moonfly"]]
+    config = [[vim.cmd "colorscheme moonfly"]],
+  }
+
+  use {
+    'hoob3rt/lualine.nvim',
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function () require'plugins.lualine'.config() end,
   }
 
 
@@ -15,7 +21,11 @@ return require('packer').startup(function ()
 
   --[[ git ]]--
   use 'tpope/vim-fugitive'
-  use {'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim'}
+  use {
+    'lewis6991/gitsigns.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function() require'gitsigns'.setup() end
+  }
 
 
   --[[ completion / LSP ]]--
@@ -30,7 +40,7 @@ return require('packer').startup(function ()
     config = function ()
       local lsp = require'lsp'
       vim.schedule(lsp.setup_lsp)
-    end
+    end,
   }
 
   -- use {
@@ -50,7 +60,7 @@ return require('packer').startup(function ()
   --[[ Fuzzy / Search ]]--
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { {'nvim-lua/plenary.nvim'} },
   }
 end)
 
