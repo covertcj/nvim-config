@@ -1,13 +1,5 @@
 local M = {}
 
-M.nnoremap = function(lhs, rhs)
-  vim.api.nvim_set_keymap('n', lhs, rhs, { noremap = true })
-end
-
-M.tnoremap = function(lhs, rhs)
-  vim.api.nvim_set_keymap('t', lhs, rhs, { noremap = true })
-end
-
 M.setup_keys = function(wk)
   local nmap = {}
   local vmap = {}
@@ -18,6 +10,8 @@ M.setup_keys = function(wk)
 
   nmap['<leader><space>'] = { [[<CMD>Telescope find_files<CR>]], 'find file' }
 
+
+  --[ Files ]--
   nmap['<leader>f'] = {
     name = 'files',
     f = { [[<CMD>Telescope find_files<CR>]], 'find file' },
@@ -25,11 +19,15 @@ M.setup_keys = function(wk)
     s = { [[<CMD>write<CR>]], 'save' },
   }
 
+  
+  --[ Buffer Management ]--
   nmap['<leader>b'] = {
     name = 'buffers',
     b = { [[<CMD>Telescope buffers<CR>]], 'find buffer' },
   }
 
+
+  --[ Help ]--
   nmap['<leader>h'] = {
     name = 'help',
     h = { [[<CMD>Telescope help_tags<CR>]], 'help tags' },
@@ -120,6 +118,15 @@ M.apply_lsp_keymapping = function (lsp_client)
   local mode = { name = 'mode' }
   local modeV = { name = 'mode' }
 
+  mode.d = {[[<CMD>Lspsaga show_line_diagnostics<CR>]], 'diagnostic', buffer=0}
+  mode.D = {[[<CMD>Telescope lsp_document_diagnostics<CR>]], 'file diagnostics', buffer=0}
+  mode.w = {[[<CMD>Telescope lsp_workspace_diagnostics<CR>]], 'workspace diagnostics', buffer=0}
+
+  wk.register({
+    ['[e'] = {[[<CMD>Lspsaga diagnostic_jump_prev<CR>]], 'prev diagnostic', buffer=0},
+    [']e'] = {[[<CMD>Lspsaga diagnostic_jump_next<CR>]], 'next diagnostic', buffer=0},
+  })
+
   if capabilities.document_formatting then
     mode.f = {[[<CMD>Format<CR>]], 'format', buffer=0}
   end
@@ -132,15 +139,6 @@ M.apply_lsp_keymapping = function (lsp_client)
   if capabilities.rename then
     mode.r = {[[<CMD>Lspsaga rename<CR>]], 'rename', buffer=0}
   end
-
-  mode.d = {[[<CMD>Lspsaga show_line_diagnostics<CR>]], 'diagnostic', buffer=0}
-  mode.D = {[[<CMD>Telescope lsp_document_diagnostics<CR>]], 'file diagnostics', buffer=0}
-  mode.w = {[[<CMD>Telescope lsp_workspace_diagnostics<CR>]], 'workspace diagnostics', buffer=0}
-
-  wk.register({
-    ['[e'] = {[[<CMD>Lspsaga diagnostic_jump_prev<CR>]], 'prev diagnostic', buffer=0},
-    [']e'] = {[[<CMD>Lspsaga diagnostic_jump_next<CR>]], 'next diagnostic', buffer=0},
-  })
 
   if capabilities.document_symbol then
     mode.s = {[[<CMD>Telescope lsp_document_symbols<CR>]], 'symbols', buffer=0}
