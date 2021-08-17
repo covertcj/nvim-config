@@ -1,3 +1,5 @@
+local M = {}
+
 local function config()
   local wk = require'which-key'
   wk.setup{}
@@ -5,7 +7,10 @@ local function config()
   local km = require'keymaps'.setup_keys(wk)
 end
 
-return {
+M.plugin = {
   'folke/which-key.nvim',
   config = config
 }
+
+return M
+

@@ -13,7 +13,7 @@ return require('packer').startup(function ()
       return
     end
 
-    use(require('plugins.' .. module))
+    use(require('plugins.' .. module).plugin)
   end
 
   --[[ Theming / UI ]]--

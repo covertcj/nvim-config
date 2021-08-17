@@ -1,3 +1,5 @@
+local M = {}
+
 local function config()
   vim.cmd [[highlight IndentOdd guifg=NONE guibg=NONE gui=nocombine]]
   vim.cmd [[highlight IndentEven guifg=NONE guibg=#141414 gui=nocombine]]
@@ -13,8 +15,10 @@ local function config()
   require'indent_blankline'.setup{}
 end
 
-return {
+M.plugin = {
   'lukas-reineke/indent-blankline.nvim',
   config = config
 }
+
+return M
 

@@ -1,3 +1,5 @@
+local M = {}
+
 local function config()
   require'gitsigns'.setup{
     keymaps = {},
@@ -8,8 +10,11 @@ local function config()
   }
 end
 
-return {
+M.plugin = {
   'lewis6991/gitsigns.nvim',
   requires = 'nvim-lua/plenary.nvim',
   config = config
 }
+
+return M
+
