@@ -1,6 +1,6 @@
 local M = {}
 
-local function setup()
+M.setup = function()
   vim.g.vimwiki_folding = 'expr'
   vim.g.vimwiki_list = {{
     path = '~/notes/',
@@ -11,7 +11,7 @@ end
 
 M.plugin = {
   'vimwiki/vimwiki',
-  setup = setup
+  setup = [[require'plugins.vimwiki'.setup()]],
 }
 
 return M
