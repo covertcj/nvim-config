@@ -1,11 +1,18 @@
--- function is_windows()
---   return vim.fn.has('win32') == 1
--- end
+local util = require'util'
+
+local USE_MOD_OPTS = {
+  windows = true
+}
 
 return require('packer').startup(function ()
   use 'wbthomason/packer.nvim'
 
-  local function use_mod(module)
+  local function use_mod(module, opts)
+    opts = util.merge_tables(USE_MOD_OPTS, (opts or {}))
+    if opts.windows == false and util.is_windows() then
+      return
+    end
+
     use(require('plugins.' .. module))
   end
 
@@ -14,6 +21,8 @@ return require('packer').startup(function ()
   use 'rakr/vim-one'
   use_mod 'lualine'
   use_mod 'which-key'
+
+  use_mod('treesitter', { windows = false })
 
 
   --[[ General Editing ]]--
