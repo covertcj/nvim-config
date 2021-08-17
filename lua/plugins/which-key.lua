@@ -1,6 +1,6 @@
 local M = {}
 
-local function config()
+M.config = function()
   local wk = require'which-key'
   wk.setup{}
 
@@ -9,7 +9,7 @@ end
 
 M.plugin = {
   'folke/which-key.nvim',
-  config = config
+  config = [[require'plugins.which-key'.config()]],
 }
 
 return M
