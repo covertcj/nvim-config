@@ -26,6 +26,11 @@ M.leader_keys = {
     name = 'git',
     g = { [[<cmd>Git<CR>]], 'status' },
   },
+
+  t = {
+    name = 'settings toggles',
+    t = { [[<CMD>ToggleTheme<CR>]], 'theme' },
+  },
 }
 
 M.nnoremap('<C-l>', [[<cmd>noh<CR>]])
