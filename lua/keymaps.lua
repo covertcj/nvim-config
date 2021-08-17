@@ -5,7 +5,7 @@ M.nnoremap = function(lhs, rhs)
 end
 
 M.leader_keys = {
-  ['space'] = { [[<CMD>Telescope find_files<CR>]], 'find file' },
+  ['<space>'] = { [[<CMD>Telescope find_files<CR>]], 'find file' },
 
   f = {
     name = 'files',
