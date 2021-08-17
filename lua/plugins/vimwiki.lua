@@ -1,3 +1,5 @@
+local M = {}
+
 local function setup()
   vim.g.vimwiki_folding = 'expr'
   vim.g.vimwiki_list = {{
@@ -7,8 +9,10 @@ local function setup()
   }}
 end
 
-return {
+M.plugin = {
   'vimwiki/vimwiki',
   setup = setup
 }
+
+return M
 

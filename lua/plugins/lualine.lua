@@ -1,3 +1,5 @@
+local M = {}
+
 local function config()
   require'lualine'.setup({
     options = {
@@ -28,9 +30,11 @@ local function config()
   })
 end
 
-return {
+M.plugin = {
   'hoob3rt/lualine.nvim',
   requires = {'kyazdani42/nvim-web-devicons'},
   config = config
 }
+
+return M
 
