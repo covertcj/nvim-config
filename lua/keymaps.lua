@@ -1,20 +1,34 @@
-function cjc_inoremap(keys, action)
-  vim.api.nvim_set_keymap('i', keys, action, { noremap = true })
+local M = {}
+
+M.nnoremap = function(lhs, rhs)
+  vim.api.nvim_set_keymap('n', lhs, rhs, { noremap = true })
 end
 
-function cjc_nnoremap(keys, action)
-  vim.api.nvim_set_keymap('n', keys, action, { noremap = true })
-end
+M.leader_keys = {
+  f = {
+    name = 'files',
+    f = { [[<cmd>Telescope find_files<CR>]], 'find file' },
+    g = { [[<cmd>Telescope live_grep<CR>]], 'grep files' },
+    s = { [[<cmd>write<CR>]], 'save' },
+  },
 
-function cjc_setup_keymaps()
-  local nnoremap = cjc_nnoremap
-  local inoremap = cjc_inoremap
+  b = {
+    name = 'buffers',
+    b = { [[<cmd>Telescope buffers<CR>]], 'find buffer' },
+  },
 
-  nnoremap('<leader>ff', [[<cmd>Telescope find_files<cr>]])
-  nnoremap('<leader>fg', [[<cmd>Telescope live_grep<cr>]])
-  nnoremap('<leader>bb', [[<cmd>Telescope buffers<cr>]])
-  nnoremap('<leader>h' , [[<cmd>Telescope help_tags<cr>]])
-end
+  h = {
+    name = 'help',
+    h = { [[<cmd>Telescope help_tags<CR>]], 'help tags' },
+  },
 
-cjc_setup_keymaps()
+  g = {
+    name = 'git',
+    g = { [[<cmd>Git<CR>]], 'status' },
+  },
+}
+
+M.nnoremap('<C-l>', [[<cmd>noh<CR>]])
+
+return M
 
