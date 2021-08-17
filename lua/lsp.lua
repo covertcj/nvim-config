@@ -1,45 +1,17 @@
 local M = {}
 
+vim.cmd("command! Format lua require'lsp.format'.format()")
+
 local function on_attach(client)
-  local map = vim.api.nvim_buf_set_keymap
+  local keymap = require'keymaps'.generate_lsp_map(client)
+  local wk = require'which-key'
+  wk.register(
+    { m = keymap },
+    { prefix = '<leader>' }
+  )
 
   -- TODO revisit these shortcuts and formatting
   -- much borrowed from https://github.com/lukas-reineke/dotfiles/tree/796a9252c84cdd89fc5f40c6bd5e12159658b167/vim
-
-  if client.resolved_capabilities.document_formatting then
-    vim.cmd("command! -buffer Format lua require'lsp.format'.format()")
-    map(0, "n", "<leader>rf", ":Format<CR>", {noremap = true})
-  --   vim.cmd [[augroup Format]]
-  --   vim.cmd [[autocmd! * <buffer>]]
-  --   vim.cmd [[autocmd BufWritePost <buffer> lua require'lsp.formatting'.format()]]
-  --   vim.cmd [[augroup END]]
-  end
-
-  if client.resolved_capabilities.goto_definition then
-    map(0, "n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", {noremap = true})
-  end
-
-  if client.resolved_capabilities.hover then
-    map(0, "n", "<CR>", "<cmd>lua vim.lsp.buf.hover()<CR>", {noremap = true})
-  end
-
-  -- if client.resolved_capabilities.find_references then
-  --   map(
-  --     0,
-  --     "n",
-  --     "<Space>*",
-  --     ":lua require('lists').change_active('Quickfix')<CR>:lua vim.lsp.buf.references()<CR>",
-  --     {noremap = true}
-  --   )
-  -- end
-
-  -- if client.resolved_capabilities.rename then
-  --   map(0, "n", "<Space>rn", "<cmd>lua require'lsp.rename'.rename()<CR>", {silent = true, noremap = true})
-  -- end
-
-  if client.resolved_capabilities.signature_help then
-    map(0, "n", "<Space>s", "<cmd>lua vim.lsp.buf.signature_help()<CR>", {silent = true, noremap = true})
-  end
 
   require "lsp_signature".on_attach({
     hint_enable = false,
