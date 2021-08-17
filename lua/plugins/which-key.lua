@@ -1,6 +1,4 @@
-local M = {}
-
-M.config = function ()
+local function config()
   local wk = require'which-key'
   wk.setup{}
 
@@ -9,4 +7,7 @@ M.config = function ()
   wk.register(km.leader_keys, { prefix = '<leader>' })
 end
 
-return M
+return {
+  'folke/which-key.nvim',
+  config = config
+}
