@@ -32,7 +32,9 @@ M.nnoremap('<C-l>', [[<cmd>noh<CR>]])
 
 M.generate_lsp_map = function (lsp_client)
   local capabilities = lsp_client.resolved_capabilities
-  local mode = {}
+  local mode = {
+    name = 'mode'
+  }
 
   print(table.concat(capabilities, ', '))
 
