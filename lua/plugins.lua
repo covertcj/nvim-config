@@ -5,25 +5,14 @@
 return require('packer').startup(function ()
   use 'wbthomason/packer.nvim'
 
+  local function use_mod(module)
+    use(require('plugins.' .. module))
+  end
+
   --[[ Theming / UI ]]--
-  use {
-    'bluz71/vim-moonfly-colors',
-    config = [[vim.cmd "colorscheme moonfly"]],
-  }
-
-  use {
-    'hoob3rt/lualine.nvim',
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function () require'plugins.lualine'.config() end,
-  }
-
-  -- TODO add which-key support for all my mappings
-  use {
-    'folke/which-key.nvim',
-    config = function()
-      require'plugins.which-key'.config()
-    end,
-  }
+  use_mod 'moonfly'
+  use_mod 'lualine'
+  use_mod 'which-key'
 
 
   --[[ General Editing ]]--
@@ -33,11 +22,7 @@ return require('packer').startup(function ()
 
   --[[ git ]]--
   use 'tpope/vim-fugitive'
-  use {
-    'lewis6991/gitsigns.nvim',
-    requires = 'nvim-lua/plenary.nvim',
-    config = function() require'gitsigns'.setup() end
-  }
+  use_mod 'gitsigns'
 
 
   --[[ completion / LSP ]]--
@@ -45,15 +30,7 @@ return require('packer').startup(function ()
   use 'ms-jpq/coq_nvim'
 
   use 'ray-x/lsp_signature.nvim'
-  use {
-    'neovim/nvim-lspconfig',
-    opt = false,
-    requires = {'ms-jpq/coq_nvim'},
-    config = function ()
-      local lsp = require'lsp'
-      vim.schedule(lsp.setup_lsp)
-    end,
-  }
+  use_mod 'lspconfig'
 
   -- use {
   --   "folke/trouble.nvim",
@@ -69,23 +46,10 @@ return require('packer').startup(function ()
 
 
   --[[ Fuzzy / Search ]]--
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} },
-  }
+  use_mod 'telescope'
 
-  
+
   --[[ Notes ]]--
-  use {
-    'vimwiki/vimwiki',
-    setup = function ()
-      vim.g.vimwiki_folding = 'expr'
-      vim.g.vimwiki_list = {{
-        path = '~/notes/',
-        syntax = 'markdown',
-        ext = '.md',
-      }}
-    end,
-  }
+  use_mod 'vimwiki'
 end)
 
