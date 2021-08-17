@@ -42,6 +42,7 @@ return require('packer').startup(function ()
 
   use 'ray-x/lsp_signature.nvim'
   use_mod 'lspconfig'
+  use 'glepnir/lspsaga.nvim'
 
   -- use {
   --   "folke/trouble.nvim",
