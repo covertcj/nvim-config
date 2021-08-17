@@ -3,15 +3,18 @@ local M = {}
 vim.cmd("command! Format lua require'lsp.format'.format()")
 
 local function on_attach(client)
-  local keymap = require'keymaps'.generate_lsp_map(client)
-  local wk = require'which-key'
-  wk.register(
-    { m = keymap },
-    { prefix = '<leader>' }
-  )
+  require'keymaps'.apply_lsp_keymapping(client)
 
   -- TODO revisit these shortcuts and formatting
   -- much borrowed from https://github.com/lukas-reineke/dotfiles/tree/796a9252c84cdd89fc5f40c6bd5e12159658b167/vim
+
+  local capabilities = client.resolved_capabilities
+
+  if capabilities.document_highlight then
+    vim.api.nvim_command [[autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()]]
+    vim.api.nvim_command [[autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]]
+    vim.api.nvim_command [[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
+  end
 
   require "lsp_signature".on_attach({
     hint_enable = false,

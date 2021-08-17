@@ -44,20 +44,58 @@ M.leader_keys = {
   },
 }
 
-M.generate_lsp_map = function (lsp_client)
+M.apply_lsp_keymapping = function (lsp_client)
+  local wk = require'which-key'
   local capabilities = lsp_client.resolved_capabilities
-  local mode = {
-    name = 'mode'
-  }
+  local mode = { name = 'mode' }
+  local modeV = { name = 'mode' }
 
-  print(table.concat(capabilities, ', '))
+  print(vim.inspect(capabilities, ', '))
 
   if capabilities.document_formatting then
     mode.f = {[[<CMD>Format<CR>]], 'format', buffer=0}
   end
 
+  if capabilities.code_action then
+    mode.a = {[[<CMD>:Lspsaga code_action<CR>]], 'code actions', buffer=0}
+    modeV.a = {[[<CMD>:Lspsaga code_action<CR>]], 'code actions', buffer=0}
+  end
+
+  if capabilities.rename then
+    mode.r = {[[<CMD>Lspsaga rename<CR>]], 'rename', buffer=0}
+  end
+
+  mode.d = {[[<CMD>Lspsaga show_line_diagnostics<CR>]], 'diagnostic', buffer=0}
+  mode.D = {[[<CMD>Telescope lsp_document_diagnostics<CR>]], 'file diagnostics', buffer=0}
+  mode.w = {[[<CMD>Telescope lsp_workspace_diagnostics<CR>]], 'workspace diagnostics', buffer=0}
+
+  wk.register({
+    ['[e'] = {[[<CMD>Lspsaga diagnostic_jump_prev<CR>]], 'prev diagnostic', buffer=0},
+    [']e'] = {[[<CMD>Lspsaga diagnostic_jump_next<CR>]], 'next diagnostic', buffer=0},
+  })
+
+  if capabilities.document_symbol then
+    mode.s = {[[<CMD>Telescope lsp_document_symbols<CR>]], 'symbols', buffer=0}
+  end
+
+  if capabilities.workspace_symbol then
+    mode.S = {[[<CMD>Telescope lsp_workspace_symbols<CR>]], 'workspace symbols', buffer=0}
+  end
+
   if capabilities.goto_definition then
-    mode.g = {[[<CMD>Telescope lsp_definitions<CR>]], 'definitions', buffer=0}
+    wk.register({
+      ['gd'] = { [[<CMD>Telescope lsp_implementations<CR>]], 'goto definition' },
+    })
+
+    mode.p = { [[<CMD>Lspsaga preview_definition<CR>]], 'preview definition' },
+  end
+
+  if capabilities.implementation then
+    wk.register({
+      ['gi'] = { [[<CMD>Telescope lsp_implementations<CR>]], 'goto implementation' }
+    })
+
+    mode.R = {[[<CMD>Telescope lsp_references<CR>]], 'references', buffer=0}
   end
 
   if capabilities.hover then
@@ -65,10 +103,18 @@ M.generate_lsp_map = function (lsp_client)
   end
 
   if capabilities.signature_help then
-    mode.s = {[[<CMD>lua vim.lsp.buf.signature_help()<CR>]], 'signature help', buffer=0}
+    mode.f = {[[<CMD>lua vim.lsp.buf.signature_help()<CR>]], 'signature', buffer=0}
   end
 
-  return mode
+  wk.register(
+    { m = mode },
+    { prefix = '<leader>', mode = 'n' }
+  )
+
+  wk.register(
+    { m = mode },
+    { prefix = '<leader>', mode = 'v' }
+  )
 end
 
 M.nnoremap('<C-l>', [[<CMD>noh<CR>]])
