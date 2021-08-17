@@ -1,4 +1,4 @@
 require'basics'
-require'plugins'
 require'keymaps'
+require'plugins'
 
