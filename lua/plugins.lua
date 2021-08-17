@@ -39,7 +39,7 @@ return require('packer').startup(function ()
 
   --[[ completion / LSP ]]--
   use 'ms-jpq/coq.artifacts'
-  use 'ms-jpq/coq_nvim'
+  use_mod 'coq'
 
   use 'ray-x/lsp_signature.nvim'
   use_mod 'lspconfig'
