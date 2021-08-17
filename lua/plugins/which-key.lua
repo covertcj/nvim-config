@@ -2,9 +2,7 @@ local function config()
   local wk = require'which-key'
   wk.setup{}
 
-  local km = require'keymaps'
-
-  wk.register(km.leader_keys, { prefix = '<leader>' })
+  local km = require'keymaps'.setup_keys(wk)
 end
 
 return {

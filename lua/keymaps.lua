@@ -8,49 +8,117 @@ M.tnoremap = function(lhs, rhs)
   vim.api.nvim_set_keymap('t', lhs, rhs, { noremap = true })
 end
 
-M.leader_keys = {
-  ['<space>'] = { [[<CMD>Telescope find_files<CR>]], 'find file' },
+M.setup_keys = function(wk)
+  local nmap = {}
+  local vmap = {}
+  local imap = {}
+  local omap = {}
+  local xmap = {}
+  local tmap = {}
 
-  f = {
+  nmap['<leader><space>'] = { [[<CMD>Telescope find_files<CR>]], 'find file' }
+
+  nmap['<leader>f'] = {
     name = 'files',
     f = { [[<CMD>Telescope find_files<CR>]], 'find file' },
     g = { [[<CMD>Telescope live_grep<CR>]], 'grep files' },
     s = { [[<CMD>write<CR>]], 'save' },
-  },
+  }
 
-  b = {
+  nmap['<leader>b'] = {
     name = 'buffers',
     b = { [[<CMD>Telescope buffers<CR>]], 'find buffer' },
-  },
+  }
 
-  h = {
+  nmap['<leader>h'] = {
     name = 'help',
     h = { [[<CMD>Telescope help_tags<CR>]], 'help tags' },
-  },
+  }
 
-  g = {
+
+  --[ Git Keys ]--
+  nmap['<leader>g'] = {
     name = 'git',
     g = { [[<CMD>Git<CR>]], 'status' },
-  },
+    b = { [[<CMD>:Gitsigns toggle_current_line_blame<CR>]], 'inline blame' },
+    B = { [[<CMD>Git blame<CR>]], 'blame' },
 
-  t = {
+    h = {
+      name = 'hunk',
+      s = {[[<CMD>lua require"gitsigns".stage_hunk()<CR>]], 'stage hunk'},
+      u = {[[<CMD>lua require"gitsigns".undo_stage_hunk()<CR>]], 'unstage hunk'},
+      r = {[[<CMD>lua require"gitsigns".reset_hunk()<CR>]], 'reset hunk'},
+      p = {[[<CMD>lua require"gitsigns".preview_hunk()<CR>]], 'preview hunk'},
+    },
+
+    R = {[[<CMD>lua require"gitsigns".reset_buffer()<CR>]], 'reset buffer'},
+  }
+
+  vmap['<leader>g'] = {
+    name = 'git',
+    h = {
+      name = 'hunk',
+      s = {[[<CMD>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>]], 'stage hunk'},
+      r = {[[<CMD>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>]], 'reset hunk'},
+    },
+  }
+
+
+  --[ Settings Keys ]--
+  nmap['<leader>t'] = {
     name = 'settings',
     t = { [[<CMD>ToggleTheme<CR>]], 'theme' },
-  },
+  }
 
-  o = {
+
+  --[ Open Things ]--
+  nmap['<leader>o'] = {
     name = 'open',
     f = { [[<CMD>CHADopen<CR>]], 'file tree' },
-  },
-}
+  }
+
+
+  --[ Jumps ]--
+  nmap[']'] = {
+    name = 'next',
+    c = {[[<CMD>lua require"gitsigns.actions".next_hunk()<CR>]], 'next hunk'},
+  }
+
+  nmap['['] = {
+    name = 'prev',
+    c = {[[<CMD>lua require"gitsigns.actions".prev_hunk()<CR>]], 'prev hunk'},
+  }
+
+
+  --[ Text Object ]--
+  omap['i'] = {
+    h = {[[:<C-U>lua require"gitsigns.actions".select_hunk()<CR>]], 'git hunk'}
+  }
+  
+  xmap['i'] = {
+    h = {[[:<C-U>lua require"gitsigns.actions".select_hunk()<CR>]], 'git hunk'}
+  }
+
+
+  --[ Misc ]--
+  nmap['<C-l>'] = {[[<CMD>noh<CR>]], 'clear'}
+
+  tmap['<Esc>'] = {[[<C-\><C-N>]], 'terminal escape'}
+  tmap['<C-]>'] = {[[<Esc>]], 'terminal default <Esc>'}
+
+  wk.register(nmap, { mode = 'n' })
+  wk.register(vmap, { mode = 'v' })
+  -- wk.register(imap, { mode = 'i' })
+  wk.register(omap, { mode = 'o' })
+  wk.register(xmap, { mode = 'x' })
+  wk.register(tmap, { mode = 't' })
+end
 
 M.apply_lsp_keymapping = function (lsp_client)
   local wk = require'which-key'
   local capabilities = lsp_client.resolved_capabilities
   local mode = { name = 'mode' }
   local modeV = { name = 'mode' }
-
-  print(vim.inspect(capabilities, ', '))
 
   if capabilities.document_formatting then
     mode.f = {[[<CMD>Format<CR>]], 'format', buffer=0}
@@ -87,7 +155,7 @@ M.apply_lsp_keymapping = function (lsp_client)
       ['gd'] = { [[<CMD>Telescope lsp_implementations<CR>]], 'goto definition' },
     })
 
-    mode.p = { [[<CMD>Lspsaga preview_definition<CR>]], 'preview definition' },
+    mode.p = { [[<CMD>Lspsaga preview_definition<CR>]], 'preview definition' }
   end
 
   if capabilities.implementation then
@@ -117,14 +185,10 @@ M.apply_lsp_keymapping = function (lsp_client)
   )
 end
 
-M.nnoremap('<C-l>', [[<CMD>noh<CR>]])
-
-M.tnoremap('<Esc>', [[<C-\><C-N>]])
-M.tnoremap('<C-]>', [[<Esc>]])
 vim.g.floaterm_keymap_toggle = '<F4>'
 vim.g.floaterm_keymap_new = '<F5>'
 vim.g.floaterm_keymap_next = '<F3>'
 vim.g.floaterm_keymap_prev = '<F2>'
-
+  
 return M
 
