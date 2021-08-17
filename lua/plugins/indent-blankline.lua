@@ -1,8 +1,11 @@
 local M = {}
 
-local function config()
+M.dark_color = '#141414'
+M.light_color = '#f4f4f4'
+
+M.with_color = function(color)
   vim.cmd [[highlight IndentOdd guifg=NONE guibg=NONE gui=nocombine]]
-  vim.cmd [[highlight IndentEven guifg=NONE guibg=#141414 gui=nocombine]]
+  vim.cmd([[highlight IndentEven guifg=NONE guibg=]] .. color .. [[ gui=nocombine]])
 
   vim.g.indent_blankline_char_highlight_list = {'IndentOdd', 'IndentEven'}
   vim.g.indent_blankline_space_char_highlight_list = {'IndentOdd', 'IndentEven'}
@@ -15,9 +18,13 @@ local function config()
   require'indent_blankline'.setup{}
 end
 
+M.config = function()
+  M.with_color(M.dark_color)
+end
+
 M.plugin = {
   'lukas-reineke/indent-blankline.nvim',
-  config = config
+  config = [[require'plugins.indent-blankline'.config()]],
 }
 
 return M
