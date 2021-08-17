@@ -30,8 +30,13 @@ M.leader_keys = {
   },
 
   t = {
-    name = 'settings toggles',
+    name = 'settings',
     t = { [[<CMD>ToggleTheme<CR>]], 'theme' },
+  },
+
+  o = {
+    name = 'open',
+    f = { [[<CMD>CHADopen<CR>]], 'file tree' },
   },
 }
 

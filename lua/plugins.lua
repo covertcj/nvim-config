@@ -21,8 +21,8 @@ return require('packer').startup(function ()
   use 'rakr/vim-one'
   use_mod 'lualine'
   use_mod 'which-key'
-
   use_mod('treesitter', { windows = false })
+  use_mod 'chadtree'
 
 
   --[[ General Editing ]]--
