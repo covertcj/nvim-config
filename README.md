@@ -11,5 +11,4 @@
 
 ### "format for LanguageID not supported: typescriptreact"
 
-Make sure the project actually has `prettier` as a dependency and that the
-`./node_modules/.bin/prettier` actually exists...
+Make sure that `eslint_d` and `prettier` are on the `PATH`
