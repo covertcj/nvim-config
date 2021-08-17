@@ -30,5 +30,30 @@ M.leader_keys = {
 
 M.nnoremap('<C-l>', [[<cmd>noh<CR>]])
 
+M.generate_lsp_map = function (lsp_client)
+  local capabilities = lsp_client.resolved_capabilities
+  local mode = {}
+
+  print(table.concat(capabilities, ', '))
+
+  if capabilities.document_formatting then
+    mode.f = {[[<CMD>Format<CR>]], 'format', buffer=0}
+  end
+
+  if capabilities.goto_definition then
+    mode.g = {[[<CMD>Telescope lsp_definitions<CR>]], 'definitions', buffer=0}
+  end
+
+  if capabilities.hover then
+    mode.c = {[[<CMD>lua vim.lsp.buf.hover()<CR>]], 'under cursor', buffer=0}
+  end
+
+  if capabilities.signature_help then
+    mode.s = {[[<CMD>lua vim.lsp.buf.signature_help()<CR>]], 'signature help', buffer=0}
+  end
+
+  return mode
+end
+
 return M
 
