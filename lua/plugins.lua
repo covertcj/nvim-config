@@ -11,6 +11,7 @@ return require('packer').startup(function ()
 
   --[[ Theming / UI ]]--
   use_mod 'moonfly'
+  use 'rakr/vim-one'
   use_mod 'lualine'
   use_mod 'which-key'
 
