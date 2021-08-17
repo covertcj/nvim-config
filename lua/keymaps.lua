@@ -6,26 +6,27 @@ end
 
 M.leader_keys = {
   ['space'] = { [[<CMD>Telescope find_files<CR>]], 'find file' },
+
   f = {
     name = 'files',
-    f = { [[<cmd>Telescope find_files<CR>]], 'find file' },
-    g = { [[<cmd>Telescope live_grep<CR>]], 'grep files' },
-    s = { [[<cmd>write<CR>]], 'save' },
+    f = { [[<CMD>Telescope find_files<CR>]], 'find file' },
+    g = { [[<CMD>Telescope live_grep<CR>]], 'grep files' },
+    s = { [[<CMD>write<CR>]], 'save' },
   },
 
   b = {
     name = 'buffers',
-    b = { [[<cmd>Telescope buffers<CR>]], 'find buffer' },
+    b = { [[<CMD>Telescope buffers<CR>]], 'find buffer' },
   },
 
   h = {
     name = 'help',
-    h = { [[<cmd>Telescope help_tags<CR>]], 'help tags' },
+    h = { [[<CMD>Telescope help_tags<CR>]], 'help tags' },
   },
 
   g = {
     name = 'git',
-    g = { [[<cmd>Git<CR>]], 'status' },
+    g = { [[<CMD>Git<CR>]], 'status' },
   },
 
   t = {
@@ -34,7 +35,7 @@ M.leader_keys = {
   },
 }
 
-M.nnoremap('<C-l>', [[<cmd>noh<CR>]])
+M.nnoremap('<C-l>', [[<CMD>noh<CR>]])
 
 M.generate_lsp_map = function (lsp_client)
   local capabilities = lsp_client.resolved_capabilities
