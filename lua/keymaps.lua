@@ -4,6 +4,10 @@ M.nnoremap = function(lhs, rhs)
   vim.api.nvim_set_keymap('n', lhs, rhs, { noremap = true })
 end
 
+M.tnoremap = function(lhs, rhs)
+  vim.api.nvim_set_keymap('t', lhs, rhs, { noremap = true })
+end
+
 M.leader_keys = {
   ['<space>'] = { [[<CMD>Telescope find_files<CR>]], 'find file' },
 
@@ -40,8 +44,6 @@ M.leader_keys = {
   },
 }
 
-M.nnoremap('<C-l>', [[<CMD>noh<CR>]])
-
 M.generate_lsp_map = function (lsp_client)
   local capabilities = lsp_client.resolved_capabilities
   local mode = {
@@ -68,6 +70,15 @@ M.generate_lsp_map = function (lsp_client)
 
   return mode
 end
+
+M.nnoremap('<C-l>', [[<CMD>noh<CR>]])
+
+M.tnoremap('<Esc>', [[<C-\><C-N>]])
+M.tnoremap('<C-]>', [[<Esc>]])
+vim.g.floaterm_keymap_toggle = '<F4>'
+vim.g.floaterm_keymap_new = '<F5>'
+vim.g.floaterm_keymap_next = '<F3>'
+vim.g.floaterm_keymap_prev = '<F2>'
 
 return M
 

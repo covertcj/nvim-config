@@ -23,6 +23,7 @@ return require('packer').startup(function ()
   use_mod 'which-key'
   use_mod('treesitter', { windows = false })
   use_mod 'chadtree'
+  use 'voldikss/vim-floaterm'
 
 
   --[[ General Editing ]]--
