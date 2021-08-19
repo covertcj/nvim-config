@@ -1,9 +1,7 @@
 local M = {}
 
 M.config = function ()
-  vim.schedule(function ()
-    vim.cmd [[COQnow --shut-up]]
-  end)
+  vim.cmd [[COQnow --shut-up]]
 end
 
 M.plugin = {
