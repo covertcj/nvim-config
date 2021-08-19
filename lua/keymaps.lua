@@ -169,7 +169,7 @@ M.apply_lsp_keymapping = function (lsp_client)
   end
 
   if capabilities.signature_help then
-    mode.f = {[[<CMD>lua vim.lsp.buf.signature_help()<CR>]], 'signature', buffer=0}
+    mode.C = {[[<CMD>lua vim.lsp.buf.signature_help()<CR>]], 'signature', buffer=0}
   end
 
   wk.register(
