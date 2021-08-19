@@ -3,10 +3,8 @@ local M = {}
 M.setup_keys = function(wk)
   local nmap = {}
   local vmap = {}
-  local imap = {}
   local omap = {}
   local xmap = {}
-  local tmap = {}
 
   nmap['<leader><space>'] = { [[<CMD>Telescope find_files<CR>]], 'find file' }
 
@@ -101,15 +99,14 @@ M.setup_keys = function(wk)
   --[ Misc ]--
   nmap['<C-l>'] = {[[<CMD>noh<CR>]], 'clear'}
 
-  tmap['<Esc>'] = {[[<C-\><C-N>]], 'terminal escape'}
-  tmap['<C-]>'] = {[[<Esc>]], 'terminal default <Esc>'}
+  local map = vim.api.nvim_set_keymap
+  map('t', [[<Esc>]], [[<C-\><C-N>]], {noremap = true})
+  map('t', [[<C-]>]], [[<Esc>]], {noremap = true})
 
   wk.register(nmap, { mode = 'n' })
   wk.register(vmap, { mode = 'v' })
-  -- wk.register(imap, { mode = 'i' })
   wk.register(omap, { mode = 'o' })
   wk.register(xmap, { mode = 'x' })
-  wk.register(tmap, { mode = 't' })
 end
 
 M.apply_lsp_keymapping = function (lsp_client)
