@@ -17,3 +17,8 @@ set softtabstop=2
 set tabstop=2
 ]]
 
+-- smart search
+vim.cmd [[
+set ignorecase
+set smartcase
+]]
