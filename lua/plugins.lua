@@ -29,7 +29,9 @@ return require('packer').startup(function ()
 
   --[[ General Editing ]]--
   use 'b3nj5m1n/kommentary'
+  use 'tpope/vim-repeat'
   use 'tpope/vim-surround'
+  use 'ggandor/lightspeed.nvim'
 
 
   --[[ git ]]--
