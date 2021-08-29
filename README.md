@@ -2,11 +2,6 @@
 
 ## Installation
 
-`efm-config.yaml` needs to be symlinked to:
-
-* UNIX: `$HOME/.config/efm-langserver/config.yaml`
-* Windows: `%APPDATA%\efm-langserver\config.yaml`
-
 ## FAQ
 
 ### "format for LanguageID not supported: typescriptreact"
