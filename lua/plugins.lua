@@ -66,5 +66,8 @@ return require('packer').startup(function ()
 
   --[[ Notes ]]--
   use_mod 'vimwiki'
+  use_mod 'vim-zettel'
+  -- TODO: checkout https://github.com/alok/notational-fzf-vim
+  -- TODO: checkout https://github.com/michal-h21/vimwiki-sync
 end)
 
