@@ -32,7 +32,7 @@ return require('packer').startup(function ()
   use 'tpope/vim-repeat'
   use 'tpope/vim-surround'
   use 'ggandor/lightspeed.nvim'
-
+  use_mod 'neoformat'
 
   --[[ git ]]--
   use 'tpope/vim-fugitive'
