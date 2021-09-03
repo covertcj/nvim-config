@@ -12,16 +12,18 @@ end
 
 -- Looks for the given root file name in a directory adjacent to or parenting
 -- the file at the given file path
-local function find_root_dir(file_path, root_file_name)
+local function find_root_dir(file_path, root_patterns)
   local home_dir = parent_dir(os.getenv('HOME'))
 
   local current_path = file_path
   local parent_path = parent_dir(file_path)
 
-  while current_path ~= parent_path do
-    local path_to_check = parent_path .. '/' .. root_file_name
-    if (file_exists(path_to_check)) then
-      return parent_path
+  while current_path ~= parent_path and parent_path ~= nil do
+    for _, root_file_name in ipairs(root_patterns) do
+      local path_to_check = parent_path .. '/' .. root_file_name
+      if (file_exists(path_to_check)) then
+        return parent_path
+      end
     end
 
     current_path = parent_path
@@ -32,7 +34,10 @@ local function find_root_dir(file_path, root_file_name)
 end
 
 local SUPPORTED_FORMATTERS = {
-  prettier = { cmd = 'Neoformat prettier', root_pattern = '.prettierrc.js' },
+  prettier = {
+    cmd = 'Neoformat prettier',
+    root_patterns = { '.prettierrc', '.prettierrc.js','.prettierrc.json', }
+  },
 }
 
 M.format = function (formatter)
@@ -42,7 +47,7 @@ M.format = function (formatter)
   end
 
   local file_path = vim.fn.expand('%:p')
-  if find_root_dir(file_path, formatter.root_pattern) == nil then
+  if find_root_dir(file_path, formatter.root_patterns) == nil then
     return
   end
 
