@@ -2,7 +2,7 @@ local M = {}
 
 M.plugin = {
   'ms-jpq/chadtree',
-  run = 'python3 -m chadtree deps',
+  run = ':CHADdeps',
 }
 
 return M

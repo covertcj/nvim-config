@@ -23,6 +23,7 @@ M.plugin = {
   'ms-jpq/coq_nvim',
   setup = [[require'plugins.coq'.setup()]],
   config = [[require'plugins.coq'.config()]],
+  run = ':COQdeps',
 }
 
 return M
