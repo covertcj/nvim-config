@@ -74,6 +74,18 @@ M.setup_keys = function(wk)
   }
 
 
+  --[ Note Taking ]--
+  nmap['<leader>n'] = {
+    name = 'notes',
+    i = { [[<CMD>edit ~/notes/000\ Index.md]], 'index' },
+    n = { [[<CMD>ZettelNew]], 'new note' },
+    -- c = { [[<CMD>ZettelCapture]], 'capture' },
+    f = { [[<CMD>ZettelOpen]], 'find and open' },
+    l = { [[<CMD>ZettelSearch]], 'link search' },
+    y = { [[<CMD>ZettelYankName]], 'yank name' },
+  }
+
+
   --[ Jumps ]--
   nmap[']'] = {
     name = 'next',
