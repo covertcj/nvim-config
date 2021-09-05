@@ -1,7 +1,7 @@
 local M = {}
 
 M.config = function()
-  vim.g.zettel_link_format="[%title][%link]"
+  vim.g.zettel_link_format="[[%link|%title]]"
   --vim.g.zettel_fzf_command =
   --  "rg --column --line-number --ignore-case --no-heading --color=always "
 end

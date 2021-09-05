@@ -85,6 +85,7 @@ M.setup_keys = function(wk)
     l = { [[<CMD>ZettelSearch title:<CR>]], 'link title' },
     L = { [[<CMD>ZettelSearch<CR>]], 'link search' },
     y = { [[<CMD>ZettelYankName<CR>]], 'yank name' },
+    B = { [[<CMD>ZettelBackLinks<CR>]], 'generate backlinks' },
   }
 
 
