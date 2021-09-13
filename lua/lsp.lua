@@ -18,6 +18,11 @@ local function on_attach(client)
       border = vim.g.floating_window_border
     }
   })
+
+  -- automatically initalize COQ after LSP attaches
+  vim.defer_fn(function()
+    vim.cmd [[COQnow --shut-up]]
+  end, 2500)
 end
 
 function M.setup_lsp()
