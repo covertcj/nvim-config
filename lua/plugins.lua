@@ -25,6 +25,7 @@ return require('packer').startup(function ()
   use_mod 'chadtree'
   use_mod 'floaterm'
   use_mod 'indent-blankline'
+  use_mod 'neoscroll'
 
 
   --[[ General Editing ]]--
