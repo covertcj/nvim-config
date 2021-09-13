@@ -1,5 +1,9 @@
 vim.g.mapleader = " "
 
+vim.cmd [[
+set mouse=a
+]]
+
 -- theming / ui
 vim.cmd [[
 set termguicolors
