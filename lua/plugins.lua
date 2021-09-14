@@ -35,6 +35,8 @@ return require('packer').startup(function ()
   use 'tpope/vim-surround'
   use 'ggandor/lightspeed.nvim'
   use_mod 'neoformat'
+  use_mod 'better-escape'
+
 
   --[[ git ]]--
   use 'tpope/vim-fugitive'
