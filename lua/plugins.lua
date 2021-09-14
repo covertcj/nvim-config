@@ -26,6 +26,7 @@ return require('packer').startup(function ()
   use_mod 'floaterm'
   use_mod 'indent-blankline'
   use_mod 'neoscroll'
+  use_mod 'barbar'
 
 
   --[[ General Editing ]]--

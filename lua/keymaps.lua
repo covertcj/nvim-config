@@ -22,7 +22,22 @@ M.setup_keys = function(wk)
   nmap['<leader>b'] = {
     name = 'buffers',
     b = { [[<CMD>Telescope buffers<CR>]], 'find buffer' },
+    j = {[[<CMD>BufferPick<CR>]], 'jump to buffer'},
+    k = { [[<CMD>BufferClose<CR>]], 'kill buffer' },
+    K = { [[<CMD>BufferCloseAllButCurrent<CR>]], 'kill other buffers' },
+    p = { [[<CMD>BufferPin<CR>]], 'pin buffer' },
+    P = { [[<CMD>BufferCloseAllButPinned<CR>]], 'kill unpinned buffers' },
   }
+
+  nmap['<A-,>'] = {[[<CMD>BufferPrevious<CR>]], 'prev buffer'}
+  nmap['<A-.>'] = {[[<CMD>BufferNext<CR>]], 'next buffer'}
+  nmap['<A-<>'] = {[[<CMD>BufferMovePrevious<CR>]], 'move buffer left'}
+  nmap['<A->>'] = {[[<CMD>BufferMoveNext<CR>]], 'move buffer right'}
+  -- macos transforms these alt bindings into special characters, see above for what is actually pressed...
+  nmap['≤'] = {[[<CMD>BufferPrevious<CR>]], '(macos) prev buffer'}
+  nmap['≥'] = {[[<CMD>BufferNext<CR>]], '(macos) next buffer '}
+  nmap['¯'] = {[[<CMD>BufferMovePrevious<CR>]], '(macos) move buffer left'}
+  nmap['˘'] = {[[<CMD>BufferMoveNext<CR>]], '(macos) move buffer right'}
 
 
   --[ Help ]--
@@ -113,6 +128,7 @@ M.setup_keys = function(wk)
 
   --[ Misc ]--
   nmap['<C-l>'] = {[[<CMD>noh<CR>]], 'clear'}
+
 
   local map = vim.api.nvim_set_keymap
   map('t', [[<Esc>]], [[<C-\><C-N>]], {noremap = true})
