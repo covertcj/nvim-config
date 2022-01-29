@@ -1,5 +1,3 @@
-require'basics'
-require'keymaps'
-require'plugins'
-require'theme'
-
+require 'cjc.options'
+require 'cjc.keymaps'
+require 'cjc.plugins'
