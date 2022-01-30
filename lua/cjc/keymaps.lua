@@ -40,3 +40,6 @@ map("i", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 map("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 
+-- search
+map('n', '<C-_>', '<CMD>noh<CR>', opts) -- <C-/>
+
