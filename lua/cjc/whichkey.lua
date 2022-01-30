@@ -36,7 +36,15 @@ local n_mappings = {
     s = { '<CMD>Telescope lsp_document_symbols<CR>', 'symbols', },
     S = { '<CMD>Telescope lsp_workspace_symbols<CR>', 'workspace symbols', },
     i = { '<CMD>LspInfo<CR>', 'lsp info', },
-    i = { '<CMD>LspInstallInfo<CR>', 'lsp install info', },
+    I = { '<CMD>LspInstallInfo<CR>', 'lsp install info', },
+  },
+
+  g = {
+    name = 'git',
+    g = { '<CMD>Neogit<CR>', 'neogit'},
+    j = { '<CMD>Gitsigns next_hunk<CR>', 'next hunk'},
+    k = { '<CMD>Gitsigns prev_hunk<CR>', 'prev hunk'},
+    p = { '<CMD>Gitsigns preview_hunk<CR>', 'preview hunk'},
   },
 
   P = {
