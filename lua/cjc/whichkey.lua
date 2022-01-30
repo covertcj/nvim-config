@@ -22,7 +22,7 @@ local n_mappings = {
 
   o = {
     name = 'open',
-    e = { '<CMD>Lexplore 30<CR>', 'explorer' },
+    e = { '<CMD>NvimTreeToggle<CR>', 'explorer' },
   },
 
   l = {

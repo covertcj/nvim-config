@@ -72,6 +72,24 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- file tree
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icon
+    },
+    config = function()
+      require'nvim-tree'.setup {
+        view = {
+          side = 'right',
+        },
+        update_focused_file = {
+          enable = true,
+        },
+      }
+    end
+  }
+
   -- completion / snippets / LSP
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
