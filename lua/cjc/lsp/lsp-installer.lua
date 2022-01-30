@@ -7,16 +7,10 @@ lsp_installer.on_server_ready(function (server)
     capabilities = handlers.capabilities,
   }
 
-  -- TODO make loading these files dynamic based on the server's name
-  -- the on_attach logic should be moveable as well I think
-  if server.name == "sumneko_lua" then
-    local sumneko_opts = require'cjc.lsp.settings.sumneko_lua'.get_opts()
-    opts = vim.tbl_deep_extend('force', sumneko_opts, opts)
-  end
-
-  if server.name == "jsonls" then
-    local jsonls_opts = require'cjc.lsp.settings.jsonls'.get_opts()
-    opts = vim.tbl_deep_extend('force', jsonls_opts, opts)
+  local settings_exist, server_settings = pcall(require, string.format('cjc.lsp.servers.%s', server.name))
+  if settings_exist and server_settings.get_opts ~= nil then
+    local server_opts = server_settings.get_opts()
+    opts = vim.tbl_deep_extend('force', server_opts, opts)
   end
 
   server:setup(opts)

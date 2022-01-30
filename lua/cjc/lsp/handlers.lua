@@ -82,9 +82,11 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-  if client.name == "tsserver" then
-    client.resolved_capabilities.document_formatting = false
+  local settings_exist, server_settings = pcall(require, string.format('cjc.lsp.servers.%s', client.name))
+  if settings_exist and server_settings.on_attach ~= nil then
+    local server_opts = server_settings.on_attach(client, bufnr)
   end
+
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
 end
