@@ -46,12 +46,15 @@ return require('packer').startup(function(use)
   use {
     'bluz71/vim-moonfly-colors',
     config = function ()
+      vim.g.moonflyItalics = 0
       vim.cmd[[ colorscheme moonfly ]]
     end
   }
 
-  -- completion / snippets
-  use 'neovim/nvim-lspconfig'
+  -- text editing
+  use 'tpope/vim-surround'
+
+  -- completion / snippets / LSP
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
@@ -61,8 +64,10 @@ return require('packer').startup(function(use)
 
   use 'saadparwaiz1/cmp_luasnip'
   use 'L3MON4D3/LuaSnip'
-  use "rafamadriz/friendly-snippets"
+  use 'rafamadriz/friendly-snippets'
 
+  use 'neovim/nvim-lspconfig'
+  use 'williamboman/nvim-lsp-installer'
 
   if packer_bootstrap then
     require('packer').sync()

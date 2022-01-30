@@ -3,8 +3,9 @@ if not cmp_status_ok then
   return
 end
 
-require("luasnip.loaders.from_vscode").load()
-local lspkind = require('lspkind')
+require'luasnip.loaders.from_vscode'.load()
+local luasnip = require'luasnip'
+local lspkind = require'lspkind'
 
 local check_backspace = function ()
   local col = vim.fn.col "." - 1
@@ -64,6 +65,7 @@ cmp.setup({
   },
 
   sources = {
+    { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
