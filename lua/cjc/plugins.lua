@@ -54,6 +54,14 @@ return require('packer').startup(function(use)
   -- key mapping
   use 'folke/which-key.nvim'
 
+  -- tree sitter
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+  }
+  
+  use 'p00f/nvim-ts-rainbow'
+
   -- fuzzy finding
   use 'nvim-telescope/telescope.nvim'
 
