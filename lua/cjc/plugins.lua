@@ -51,6 +51,9 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- key mapping
+  use 'folke/which-key.nvim'
+
   -- fuzzy finding
   use 'nvim-telescope/telescope.nvim'
 

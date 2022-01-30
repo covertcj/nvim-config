@@ -1,6 +1,4 @@
 local opts = { noremap = true, silent = true }
-local term_opts = { silent = true }
-
 local map = vim.api.nvim_set_keymap
 
 -- leader
@@ -32,9 +30,6 @@ map("i", "kj", "<ESC>", opts)
 map("v", ">", ">gv", opts)
 map("v", "<", "<gv", opts)
 
--- directory explorer
-map("n", "<leader>oe", ":Lexplore 30<CR>", opts)
-
 -- move text in visual mode
 map("v", "<A-j>", ":m .+1<CR>==", opts)
 map("v", "<A-k>", ":m .-2<CR>==", opts)
@@ -44,8 +39,4 @@ map("i", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 map("i", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 map("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
-
--- telescope
-map("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-map("n", "<leader>fg", ":Telescope live_grep<CR>", opts)
 
