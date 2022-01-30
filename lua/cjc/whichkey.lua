@@ -22,6 +22,12 @@ local n_mappings = {
     s = { '<CMD>w<CR>', 'save' },
   },
 
+  b = {
+    name = 'buffer',
+    b = { '<CMD>Telescope buffers<CR>', 'find buffer' },
+    d = { '<CMD>Bdelete<CR>', 'delete buffer' },
+  },
+
   o = {
     name = 'open',
     e = { '<CMD>NvimTreeToggle<CR>', 'explorer' },
