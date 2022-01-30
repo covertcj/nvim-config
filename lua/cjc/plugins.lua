@@ -61,6 +61,7 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/nvim-cmp'
   use 'onsails/lspkind-nvim'
+  use 'hrsh7th/cmp-nvim-lua'
 
   use 'saadparwaiz1/cmp_luasnip'
   use 'L3MON4D3/LuaSnip'
@@ -68,6 +69,7 @@ return require('packer').startup(function(use)
 
   use 'neovim/nvim-lspconfig'
   use 'williamboman/nvim-lsp-installer'
+
 
   if packer_bootstrap then
     require('packer').sync()
