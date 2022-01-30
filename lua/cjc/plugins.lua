@@ -3,7 +3,7 @@ local fn = vim.fn
 -- Automatically install packer
 local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system {
+  packer_bootstrap = fn.system {
     "git",
     "clone",
     "--depth",
@@ -30,18 +30,18 @@ if not status_ok then
 end
 
 packer.init {
-  display = {
-    open_fn = function()
-      return require("packer.util").float { }
-    end
-  }
+  -- display = {
+  --   open_fn = function()
+  --     return require'packer.util'.float { }
+  --   end
+  -- }
 }
 
 return require('packer').startup(function(use)
-  use "wbthomason/packer.nvim"
+  use 'wbthomason/packer.nvim'
 
-  use "nvim-lua/popup.nvim"
-  use "nvim-lua/plenary.nvim"
+  use 'nvim-lua/popup.nvim'
+  use 'nvim-lua/plenary.nvim'
 
   use {
     'bluz71/vim-moonfly-colors',
@@ -59,7 +59,7 @@ return require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
   }
-  
+
   use 'p00f/nvim-ts-rainbow'
 
   -- fuzzy finding
@@ -76,7 +76,7 @@ return require('packer').startup(function(use)
       'kyazdani42/nvim-web-devicons', -- optional, for file icon
     },
     config = function ()
-      require("bufferline").setup{}
+      require'bufferline'.setup{}
     end
   }
 
