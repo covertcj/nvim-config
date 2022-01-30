@@ -2,6 +2,7 @@ local fn = vim.fn
 
 -- Automatically install packer
 local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+local packer_bootstrap = nil
 if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system {
     "git",
@@ -44,11 +45,12 @@ return require('packer').startup(function(use)
   use 'nvim-lua/plenary.nvim'
 
   use {
+    'marko-cerovac/material.nvim',
+    config = function () require'cjc.colorscheme'.apply_material() end,
+  }
+  use {
     'bluz71/vim-moonfly-colors',
-    config = function ()
-      vim.g.moonflyItalics = 0
-      vim.cmd[[ colorscheme moonfly ]]
-    end
+    -- config = function () require'cjc.colorscheme'.apply_moonfly() end,
   }
 
   -- key mapping
