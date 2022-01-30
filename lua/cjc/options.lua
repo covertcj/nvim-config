@@ -1,11 +1,11 @@
-o = vim.opt
+local o = vim.opt
 
 o.backup = false
 o.swapfile = false
 
-o.mouse = "a"
+o.mouse = 'a'
 o.termguicolors = true
-o.clipboard = "unnamedplus"
+o.clipboard = 'unnamedplus'
 
 o.hlsearch = true
 o.ignorecase = true
@@ -15,7 +15,7 @@ o.tabstop = 2
 o.shiftwidth = 2
 o.expandtab = true
 
-o.signcolumn = "yes"
+o.signcolumn = 'yes'
 o.number = true
 o.relativenumber = true
 o.numberwidth = 4

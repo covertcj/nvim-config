@@ -23,9 +23,9 @@ function M.apply_material()
     },
 
     contrast_filetypes = { -- Specify which filetypes get the contrasted (darker) background
-      "terminal", -- Darker terminal background
-      "packer", -- Darker packer background
-      "qf" -- Darker qf list background
+      'terminal', -- Darker terminal background
+      'packer', -- Darker packer background
+      'qf' -- Darker qf list background
     },
 
     high_visibility = {
