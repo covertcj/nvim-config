@@ -25,6 +25,8 @@ map("n", "<S-h>", ":bprevious<CR>", opts)
 -- leaving insert mode
 map("i", "jk", "<ESC>", opts)
 map("i", "kj", "<ESC>", opts)
+map('t', 'jk', '<C-\\><C-N>', opts)
+map('t', 'kj', '<C-\\><C-N>', opts)
 
 -- keep visual selection when indenting
 map("v", ">", ">gv", opts)

@@ -112,6 +112,12 @@ return require('packer').startup(function(use)
     config = function() require('gitsigns').setup() end
   }
 
+  -- terminals
+  use {
+    'akinsho/toggleterm.nvim',
+    config = function() require'cjc.toggleterm'.config() end
+  }
+
   -- completion / snippets / LSP
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'

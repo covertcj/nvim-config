@@ -7,7 +7,6 @@
 
 ## TODO
 
-- [ ] popup/split terminals
 - [ ] quick commenting
 - [ ] status line enhancements
 - [ ] rework packer config system. probably don't require stuff from init.luaunless
