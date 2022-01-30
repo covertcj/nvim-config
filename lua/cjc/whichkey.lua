@@ -13,6 +13,8 @@ local n_opts = {
 }
 
 local n_mappings = {
+
+  ['<space>'] = { '<CMD>Telescope find_files<CR>', 'find file' },
   f = {
     name = 'file',
     f = { '<CMD>Telescope find_files<CR>', 'find file' },
