@@ -51,6 +51,9 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- fuzzy finding
+  use 'nvim-telescope/telescope.nvim'
+
   -- text editing
   use 'tpope/vim-surround'
 
@@ -69,7 +72,6 @@ return require('packer').startup(function(use)
 
   use 'neovim/nvim-lspconfig'
   use 'williamboman/nvim-lsp-installer'
-
 
   if packer_bootstrap then
     require('packer').sync()
