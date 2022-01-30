@@ -1,18 +1,18 @@
 local fn = vim.fn
 
 -- Automatically install packer
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local packer_bootstrap = nil
 if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system {
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
+    'git',
+    'clone',
+    '--depth',
+    '1',
+    'https://github.com/wbthomason/packer.nvim',
     install_path,
   }
-  print "Installing packer close and reopen Neovim..."
+  print 'Installing packer close and reopen Neovim...'
   vim.cmd [[packadd packer.nvim]]
 end
 
@@ -25,7 +25,7 @@ vim.cmd [[
 ]]
 
 -- quit early when packer isnt installed yet
-local status_ok, packer = pcall(require, "packer")
+local status_ok, packer = pcall(require, 'packer')
 if not status_ok then
   return
 end
@@ -38,7 +38,7 @@ packer.init {
   -- }
 }
 
-return require('packer').startup(function(use)
+return require'packer'.startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use 'nvim-lua/popup.nvim'
