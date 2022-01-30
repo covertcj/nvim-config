@@ -60,6 +60,18 @@ return require('packer').startup(function(use)
   -- text editing
   use 'tpope/vim-surround'
 
+  -- "tabs"
+  use 'moll/vim-bbye'
+  use {
+    'akinsho/bufferline.nvim',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icon
+    },
+    config = function ()
+      require("bufferline").setup{}
+    end
+  }
+
   -- completion / snippets / LSP
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
