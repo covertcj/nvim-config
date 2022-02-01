@@ -118,6 +118,27 @@ return require'packer'.startup(function(use)
     config = function() require'cjc.toggleterm'.config() end
   }
 
+  -- notes
+  use {
+    "nvim-neorg/neorg",
+    tag = "latest",
+    config = function()
+      require('neorg').setup {
+        load = {
+          ["core.defaults"] = {}
+        },
+        ["core.norg.dirman"] = {
+          config = {
+            workspaces = {
+              notes = "~/neorg/notes",
+            },
+          },
+        },
+      }
+    end,
+    requires = "nvim-lua/plenary.nvim",
+  }
+
   -- completion / snippets / LSP
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
